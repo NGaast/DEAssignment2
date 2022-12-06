@@ -19,7 +19,7 @@ volumes:
 services:
   spark-driver-app:
     build:
-      context: ./jupyter-all-spark-notebook-gcp    # jupyter/all-spark-notebook with spark configurations for bigquery and gcs
+      context: jupyter-all-spark-notebook-gcp    # jupyter/all-spark-notebook with spark configurations for bigquery and gcs
     container_name: spark-driver-app
     user: root
     ports:

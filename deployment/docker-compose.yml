@@ -4,7 +4,7 @@ volumes:
   spark-data:
     driver_opts:
       type: none
-      device: /home/indika_kuma/data
+      device: /home/davidakkermans99/data
       o: bind
   notebooks:
     driver_opts:

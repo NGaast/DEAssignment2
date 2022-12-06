@@ -9,12 +9,12 @@ volumes:
   notebooks:
     driver_opts:
       type: none
-      device: /home/indika_kuma/notebooks
+      device: /home/davidakkermans99/notebooks
       o: bind
   spark-checkpoint:
     driver_opts:
       type: none
-      device: /home/indika_kuma/checkpoint
+      device: /home/davidakkermans99/checkpoint
       o: bind
 services:
   spark-driver-app:

@@ -27,6 +27,7 @@ def upload_data():
         # No file in request
         if 'training_data' not in request.files:
             print("No file in request", file=sys.stdout)
+            print(request.files, file=sys.stdout)
             sys.stdout.flush()
             return redirect(request.url)
         # Retrieve file

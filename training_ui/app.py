@@ -25,13 +25,13 @@ def upload_data():
     data_manager = DataManagement('de-2022-ng', 'data_de2022_ng')
     if request.method == "POST":
         # No file in request
-        if 'training_data' not in request.files:
+        if 'worldcup_data' not in request.files:
             print("No file in request", file=sys.stdout)
             print(request.files, file=sys.stdout)
             sys.stdout.flush()
             return redirect(request.url)
         # Retrieve file
-        data_file = request.files['training_data']
+        data_file = request.files['worldcup_data']
         # No file
         if data_file.filename == '':
             print("No file selected", file=sys.stdout)

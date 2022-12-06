@@ -42,7 +42,7 @@ def upload_data():
         sys.stdout.flush()
 
         json_format = json.load(data_file)
-        DataManagement.store_json(json_format, "worldcup_json")
+        data_manager.store_json(json_format, "worldcup_json")
 
         print("Succesfully stored data", file=sys.stdout)
         sys.stdout.flush()

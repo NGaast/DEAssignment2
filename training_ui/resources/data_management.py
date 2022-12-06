@@ -20,9 +20,6 @@ class DataManagement:
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
             json_post = request.get_json()
-            df = pd.DataFrame.from_dict(json_post)
-            print("Filename: {0}".format(file_name), file=sys.stdout)
-            sys.stdout.flush()
 
             # Configure
             client = storage.Client(project=self.project_id)
@@ -30,7 +27,7 @@ class DataManagement:
             blob = bucket.blob(file_name)
 
             # Upload the locally saved model
-            blob.upload_from_string(df.to_csv(index=False), content_type='application/json')
+            blob.upload_from_string(json_post, content_type='application/json')
             return True
         return False
 

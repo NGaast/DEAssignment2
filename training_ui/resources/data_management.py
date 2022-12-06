@@ -7,6 +7,7 @@ from typing_extensions import Self
 from google.cloud import storage
 import google.cloud.aiplatform as aip
 import pandas as pd
+import sys
 
 
 
@@ -37,5 +38,8 @@ class DataManagement:
         bucket = client.get_bucket(self.bucket_id)
         blob = bucket.blob(file_name)
 
+        print(type(file), file=sys.stdout)
+        sys.stdout.flush()
+                
         # Upload the locally saved model
-        blob.upload_from_string(file, content_type='application/json')
+        blob.upload_from_string(str(file), content_type='application/json')

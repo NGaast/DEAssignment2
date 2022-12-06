@@ -27,8 +27,6 @@ def upload_data():
         # No file in request
         if 'worldcup_data' not in request.files:
             print("No file in request", file=sys.stdout)
-            print(request.files, file=sys.stdout)
-            sys.stdout.flush()
             return redirect(request.url)
         # Retrieve file
         data_file = request.files['worldcup_data']
@@ -37,9 +35,6 @@ def upload_data():
             print("No file selected", file=sys.stdout)
             sys.stdout.flush()
             return redirect(request.url)
-
-        print("Succesfully fetched data: {0}".format(data_file), file=sys.stdout)
-        sys.stdout.flush()
 
         json_format = json.load(data_file)
         data_manager.store_json(json_format, "worldcup_json")

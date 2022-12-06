@@ -21,6 +21,8 @@ class DataManagement:
         if (content_type == 'application/json'):
             json_post = request.get_json()
             df = pd.DataFrame.from_dict(json_post)
+            print("Filename: {0}".format(file_name), file=sys.stdout)
+            sys.stdout.flush()
 
             # Configure
             client = storage.Client(project=self.project_id)

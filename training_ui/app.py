@@ -37,8 +37,16 @@ def upload_data():
             sys.stdout.flush()
             return redirect(request.url)
 
+        print("Succesfully fetched data: {0}".format(data_file), file=sys.stdout)
+        sys.stdout.flush()
+
         json_format = json.load(data_file)
         DataManagement.store_json(json_format, "worldcup_json")
+
+        print("Succesfully stored data", file=sys.stdout)
+        sys.stdout.flush()
+
+
         return redirect('/data_upload')
     return redirect('/data_upload')
 

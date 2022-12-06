@@ -22,6 +22,7 @@ def training_ui():
 
 @app.route('/upload_json_data', methods=['GET', 'POST'])
 def upload_data():
+    data_manager = DataManagement('de-2022-ng', 'data_de2022_ng')
     if request.method == "POST":
         # No file in request
         if 'training_data' not in request.files:
@@ -36,12 +37,8 @@ def upload_data():
             sys.stdout.flush()
             return redirect(request.url)
 
-        request_path = os.environ['TRAINING_API']
-        upload_endpoint = os.environ['UPLOAD_ENDPOINT']
-        upload_url = "{0}/{1}".format(request_path, upload_endpoint)
         json_format = json.load(data_file)
-        upload_request = requests.post(upload_url, json=json_format)
-        # Flush stdout to print in console
+        DataManagement.store_json(json_format, "worldcup_json")
         return redirect('/data_upload')
     return redirect('/data_upload')
 

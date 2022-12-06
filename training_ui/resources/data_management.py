@@ -32,17 +32,11 @@ class DataManagement:
             return True
         return False
 
-    def store_json(self, file_name):
-        content_type = request.headers.get('Content-Type')
-        if (content_type == 'application/json'):
-            json_post = request.get_json()
+    def store_json(self, file, file_name):
+        # Configure bucket
+        client = storage.Client(project=self.project_id)
+        bucket = client.get_bucket(self.bucket_id)
+        blob = bucket.blob(file_name)
 
-            # Configure bucket
-            client = storage.Client(project=self.project_id)
-            bucket = client.get_bucket(self.bucket_id)
-            blob = bucket.blob(file_name)
-
-            # Upload the locally saved model
-            blob.upload_from_string(json_post, content_type='application/json')
-            return True
-        return False
+        # Upload the locally saved model
+        blob.upload_from_string(file, content_type='application/json')

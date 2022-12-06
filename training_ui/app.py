@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, Response, request, render_template, flash, redirect
 
+from resources.data_management import DataManagement
 import requests
 import sys
 import os
@@ -15,7 +16,7 @@ secret = secrets.token_urlsafe(32)
 app.secret_key = secret
 
 
-@app.route('/training_ui', methods=['GET', 'POST'])
+@app.route('/data_upload', methods=['GET', 'POST'])
 def training_ui():
     return render_template("training_template.html")  # this method is called of HTTP method is GET, e.g., when browsing the link
 
@@ -46,17 +47,6 @@ def upload_data():
         upload_request = requests.post(upload_url, json=json_format)
         # Flush stdout to print in console
         return redirect('/training_ui')
-    return redirect('/training_ui')
-    
-@app.route('/train_model', methods=['POST'])
-def train_model():
-    if request.method == "POST":
-        flash('Running pipeline')
-        request_path = os.environ['TRAINING_API']
-        train_endpoint = os.environ['TRAIN_ENDPOINT']
-        train_url = "{0}/{1}".format(request_path, train_endpoint)
-        train_request = requests.post(train_url)
-        return train_request.json()
     return redirect('/training_ui')
 
 app.run(host='0.0.0.0', port=5000)

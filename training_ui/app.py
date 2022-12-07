@@ -42,7 +42,6 @@ def upload_fixtures_data():
         print("Succesfully stored data", file=sys.stdout)
         sys.stdout.flush()
 
-
         return redirect('/data_upload')
     return redirect('/data_upload')
 
@@ -67,7 +66,6 @@ def upload_fixtures_data():
 
         print("Succesfully stored data", file=sys.stdout)
         sys.stdout.flush()
-
 
         return redirect('/data_upload')
     return redirect('/data_upload')

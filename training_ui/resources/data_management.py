@@ -16,16 +16,15 @@ class DataManagement:
     def __init__(self, project_id, bucket_id):
         self.project_id = project_id
         self.bucket_id = bucket_id
+        client = storage.Client(project=self.project_id)
+        bucket = client.get_bucket(self.bucket_id)
 
     def store_dataframe(self, file_name):
         content_type = request.headers.get('Content-Type')
         if (content_type == 'application/json'):
             json_post = request.get_json()
 
-            # Configure
-            client = storage.Client(project=self.project_id)
-            bucket = client.get_bucket(self.bucket_id)
-            blob = bucket.blob(file_name)
+            blob = self.bucket.blob(file_name)
 
             # Upload the locally saved model
             blob.upload_from_string(json_post, content_type='application/json')
@@ -33,10 +32,8 @@ class DataManagement:
         return False
 
     def store_json(self, file, file_name):
-        # Configure bucket
-        client = storage.Client(project=self.project_id)
-        bucket = client.get_bucket(self.bucket_id)
-        blob = bucket.blob(file_name)
+        # Configure blob
+        blob = self.bucket.blob(file_name)
 
         print(type(file), file=sys.stdout)
         sys.stdout.flush()

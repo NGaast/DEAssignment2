@@ -16,8 +16,8 @@ class DataManagement:
     def __init__(self, project_id, bucket_id):
         self.project_id = project_id
         self.bucket_id = bucket_id
-        self.client = storage.Client(project=self.project_id)
-        self.bucket = client.get_bucket(self.bucket_id)
+        client = storage.Client(project=self.project_id)
+        bucket = client.get_bucket(self.bucket_id)
 
     def store_dataframe(self, file_name):
         content_type = request.headers.get('Content-Type')

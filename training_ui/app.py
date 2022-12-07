@@ -46,7 +46,7 @@ def upload_fixtures_data():
     return redirect('/data_upload')
 
 @app.route('/upload_statistics_data', methods=['GET', 'POST'])
-def upload_fixtures_data():
+def upload_statistics_data():
     data_manager = DataManagement('de-2022-ng', 'data_de2022_ng')
     if request.method == "POST":
         # No file in request
